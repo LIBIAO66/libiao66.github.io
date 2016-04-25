@@ -725,8 +725,8 @@ html.sb-init.sb-active.sb-active-right #projects .filter-item div a {
 	opacity: 1;
 }
 .sb-slidebar {
-	background-color: #00FFFF; /* Background colour. */
-	color: #F7F7F7; /* Text colour. */
+	background-color: #F7F7F7; /* Background colour. */
+	color: #00FFFF; /* Text colour. */
 	font-weight: 700;
 	font-size: 14px;
 	cursor: default;
@@ -735,7 +735,7 @@ html.sb-init.sb-active.sb-active-right #projects .filter-item div a {
 	overflow-x: hidden;
 }
 .sb-slidebar a {
-	color: #F7F7F7; /* Link colour. */
+	color: #00FFFF; /* Link colour. */
 	text-decoration: none;
 	font-weight: 700;
 	text-transform: uppercase;
