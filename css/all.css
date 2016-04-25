@@ -836,8 +836,8 @@ html.sb-init.sb-active.sb-active-right #projects .filter-item div a {
 	opacity: 1;
 }
 .sb-slidebar {
-	background-color: #151515; /* Background colour. */
-	color: #666; /* Text colour. */
+	background-color: #F7F7F7; /* Background colour. */
+	color: #00FFFF; /* Text colour. */
 	font-weight: 700;
 	font-size: 14px;
 	cursor: default;
@@ -961,6 +961,7 @@ span.sb-caret { /* Caret Down */
 	position: fixed;
 	width: 100%;
 	padding-top: 0;
+	background-image:
 }
 #hero h2 {
 	color: #151515;
