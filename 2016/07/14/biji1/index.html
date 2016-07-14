@@ -259,16 +259,17 @@
 <li><p>前台name=search_LIKE_enterpriseName用于模糊查询<br>前台name=search_EQ_enterpriseType 用于等于查询<br>EQ_enterpriseType是key  后台可通过key值获取前台输入值</p>
 </li>
 </ol>
-<p>   获取方法  searchParams.get(“EQ_enterpriseType”)</p>
-<pre><code>查询到的企业组织类型遍历显示在页面上
-&lt;select name=&quot;search_EQ_enterpriseType&quot;&gt;
-&lt;c:forEach items=&quot;${ Entype}&quot;  varStatus=&quot;status&quot; var=&quot;Entype&quot;&gt;
-  &lt;option value=&quot;${Entype.dataName}&quot; 
-&lt;c:if test=&quot;${Entype.dataName == param.search_EQ_enterpriseType }&quot;&gt; 
-selected &lt;/c:if&gt; &gt;&lt;c:out value=&quot;${Entype.dataName}&quot;/&gt;
-&lt;/option&gt;
-&lt;/c:forEach&gt;
-&lt;/select&gt;
+<pre><code>获取方法  searchParams.get(&quot;EQ_enterpriseType&quot;)
+
+  查询到的企业组织类型遍历显示在页面上
+   &lt;select name=&quot;search_EQ_enterpriseType&quot;&gt;
+   &lt;c:forEach items=&quot;${ Entype}&quot;  varStatus=&quot;status&quot; var=&quot;Entype&quot;&gt;
+         &lt;option value=&quot;${Entype.dataName}&quot; 
+         &lt;c:if test=&quot;${Entype.dataName == param.search_EQ_enterpriseType }&quot;&gt; 
+         selected &lt;/c:if&gt; &gt;&lt;c:out value=&quot;${Entype.dataName}&quot;/&gt;
+      &lt;/option&gt;
+   &lt;/c:forEach&gt;
+   &lt;/select&gt;
 </code></pre><ol>
 <li><p>onKeyup=”textKey()”触发事件<br>onkeyup表示键盘每输入完一个字符之后发生。简单来讲，就是键盘上的按键被放开的时候触发。<br>控制输入字数 最多只能输入1000个字</p>
 <pre><code>function textKey(){
@@ -283,92 +284,92 @@ selected &lt;/c:if&gt; &gt;&lt;c:out value=&quot;${Entype.dataName}&quot;/&gt;
 </ol>
 <p>5   表单验证之validate</p>
 <pre><code>$(document).ready(function() {
-        //聚焦第一个输入框
+       //聚焦第一个输入框
 
-        $(&quot;#enterpriseName&quot;).focus();
-        //#mainForm为需要进行验证的表单ID
-        $(&quot;#mainForm&quot;).validate({
-             //验证规则
-            rules : {
-                enterpriseName : {  // 需要进行验证的输入框name
-                    required : true  // 验证条件：必填
-                },
-                enterpriseType : {
-                    required : true
-                },
-                linkman : {
-                    required : true
-                },
-                companyPosition : {
-                    required : true
-                },
-                linkeway : {
-                    required : true,
-                    isTel : true // 验证条件：联系方式验证    
-                },
-                demandContent : {
-                    required : true
-                },
-                demandBudget : {
-                    required : true
-                },
-                startTime : {
-                    required : true
-                },
-                endTime : {
-                    required : true
-                }
-            },
-            messages : {
-                enterpriseName : {
-                    required : &quot;请输入企业名称&quot;  // 验证未通过的消息
-                },
-                enterpriseType : {
-                    required : &quot;请选择企业组织形式&quot;
-                },
-                linkman : {
-                    required : &quot;请输入联系人&quot;
-                },
-                companyPosition : {
-                    required : &quot;请输入公司职位&quot;
-                },
-                linkeway : {
-                    required : &quot;请输入身份证&quot;,
-                    isZipCode : &quot;请正确填写您的身份证&quot;
-                },
-                demandContent : {
-                    required : &quot;必填&quot;
-                },
-                demandBudget : {
-                    required : &quot;请输入预算范围&quot;
-                },
-                startTime : {
-                    required : &quot;请选择发布开始时间&quot;
-                },
-                endTime : {
-                    required : &quot;请选择发布结束时间&quot;
-                }
-            },
-              //显示验证错误
-            errorPlacement: function(error, element) {
-             if ( element.is(&quot;:radio&quot;) )
-            error.appendTo( element.parent().parent());
+   $(&quot;#enterpriseName&quot;).focus();
+    //#mainForm为需要进行验证的表单ID
+    $(&quot;#mainForm&quot;).validate({
+       //验证规则
+      rules : {
+          enterpriseName : {// 需要进行验证的输入框name
+              required : true // 验证条件：必填
+          },
+          enterpriseType : {
+              required : true
+          },
+          linkman : {
+              required : true
+          },
+          companyPosition : {
+              required : true
+          },
+          linkeway : {
+              required : true,
+              isTel : true // 验证条件：联系方式验证    
+          },
+          demandContent : {
+              required : true
+          },
+          demandBudget : {
+              required : true
+          },
+          startTime : {
+              required : true
+          },
+          endTime : {
+              required : true
+          }
+      },
+      messages : {
+          enterpriseName : {
+              required : &quot;请输入企业名称&quot;// 验证未通过的消息
+          },
+          enterpriseType : {
+              required : &quot;请选择企业组织形式&quot;
+          },
+          linkman : {
+              required : &quot;请输入联系人&quot;
+          },
+          companyPosition : {
+              required : &quot;请输入公司职位&quot;
+          },
+          linkeway : {
+              required : &quot;请输入身份证&quot;,
+              isZipCode : &quot;请正确填写您的身份证&quot;
+          },
+          demandContent : {
+              required : &quot;必填&quot;
+          },
+          demandBudget : {
+              required : &quot;请输入预算范围&quot;
+          },
+          startTime : {
+              required : &quot;请选择发布开始时间&quot;
+          },
+          endTime : {
+              required : &quot;请选择发布结束时间&quot;
+          }
+      },
+        //显示验证错误
+      errorPlacement: function(error, element) {
+       if ( element.is(&quot;:radio&quot;) )
+      error.appendTo( element.parent().parent());
 
-            else if(element.is(&quot;:text&quot;))
-            error.appendTo( element.parent().parent() );
-            else
-            error.appendTo( element.parent());
-           }
-        });
-    });
+      else if(element.is(&quot;:text&quot;))
+      error.appendTo( element.parent().parent() );
+      else
+      error.appendTo( element.parent());
+      }
+   });
+});
 </code></pre><p>6   后台插入数据到数据库需要创建对象并保存</p>
-<pre><code>public String createR(@Valid DemandPublish newDemandPublish,
- RedirectAttributes redirectAttributes){
-   demandPublishService.saveDemandPublish(newDemandPublish);
-   redirectAttributes.addFlashAttribute(&quot;message&quot;, &quot;创建成功&quot;);
+<pre><code>  public String createR(@Valid DemandPublish newDemandPublish,
+   RedirectAttributes redirectAttributes){
+    demandPublishService.saveDemandPublish(newDemandPublish);
+    redirectAttributes.addFlashAttribute(&quot;message&quot;, &quot;创建成功&quot;);
       return &quot;redirect:/login&quot;;
- }
-</code></pre><p>7   点击排序功能</p>
+}
+</code></pre><p>7  点击排序功能</p>
 <pre><code>&lt;th sortColumn=&quot;enterpriseName&quot;//字段名 onclick=&quot;orderCol(&apos;enterpriseName//字段名&apos;)&quot;&gt;企业名称&lt;/th&gt;
 </code></pre>
             <div class="clearfix"></div>
