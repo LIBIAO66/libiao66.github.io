@@ -240,30 +240,44 @@
       		<ol>
 <li><p>把语句变成sql语句用后面加个nativeQuery=true  语句前加个value。</p>
 </li>
-<li><p>页面显示部分字后面用….代替：<br>大于10个数的后面用…代替<br>$(function(){<br> var columnP = $(“.column-p”);<br> for(var i = 0;i&lt;columnP.length;i++){</p>
-<pre><code>// var txt = columnP[i].innerHTML.slice(0,10)+&apos;...&apos;;
-var a = columnP[i].innerHTML
+<li><p>页面显示部分字后面用….代替： </p>
+<p> 大于10个数的后面用…代替”：</p>
+<p> $(function(){</p>
+<pre><code>  var columnP = $(&quot;.column-p&quot;);
+  for(var i = 0;i&lt;columnP.length;i++){
+  // var txt = columnP[i].innerHTML.slice(0,10)+&apos;...&apos;;
+  var a = columnP[i].innerHTML
 
-if(a.length&gt;10){
-    a=columnP[i].innerHTML.slice(0,10)+&apos;...&apos;;
-}
- columnP[i].innerHTML = a;
+  if(a.length&gt;10){
+  a=columnP[i].innerHTML.slice(0,10)+&apos;...&apos;;
+  }
+  columnP[i].innerHTML = a;
 
- };
-</code></pre><p>  });</p>
+};
+</code></pre><p>   });</p>
 </li>
-<li><p>search_LIKE_enterpriseName  模糊查询</p>
-<p>LIKE_enterpriseName是key  后台可通过key值获取前台输入值</p>
-<p>获取方法  searchParams.get(“EQ_enterpriseType”)</p>
-<p>查询到的企业组织类型遍历显示在页面上</p>
-<select name="search_EQ_enterpriseType"><br><c:foreach items="${ Entype}" varstatus="status" var="Entype"><br><br>  <option value="${Entype.dataName}" <c:if="" test="${Entype.dataName == param.search_EQ_enterpriseType }"> selected  &gt;<c:out value="${Entype.dataName}"></c:out></option><br></c:foreach><br></select>
+<li><p>前台name=search_LIKE_enterpriseName用于模糊查询<br>前台name=search_EQ_enterpriseType 用于等于查询<br>EQ_enterpriseType是key  后台可通过key值获取前台输入值</p>
 </li>
-<li><p>onKeyup=”textKey()”触发事件<br>onkeyup表示键盘每输入完一个字符之后发生。简单来讲，就是键盘上的按键被放开的时候触发。<br>控制输入字数 最多只能输入1000个字<br>function textKey(){</p>
-<pre><code>       var busiPlanOutline = $(&quot;#demandContent&quot;).val();
-       if(busiPlanOutline.length &gt; 1000){
-           busiPlanOutline = busiPlanOutline.substring(0,1000);
-       }
-       $(&quot;#demandContent&quot;).val(busiPlanOutline);
+</ol>
+<p>   获取方法  searchParams.get(“EQ_enterpriseType”)</p>
+<pre><code>查询到的企业组织类型遍历显示在页面上
+&lt;select name=&quot;search_EQ_enterpriseType&quot;&gt;
+&lt;c:forEach items=&quot;${ Entype}&quot;  varStatus=&quot;status&quot; var=&quot;Entype&quot;&gt;
+  &lt;option value=&quot;${Entype.dataName}&quot; 
+&lt;c:if test=&quot;${Entype.dataName == param.search_EQ_enterpriseType }&quot;&gt; 
+selected &lt;/c:if&gt; &gt;&lt;c:out value=&quot;${Entype.dataName}&quot;/&gt;
+&lt;/option&gt;
+&lt;/c:forEach&gt;
+&lt;/select&gt;
+</code></pre><ol>
+<li><p>onKeyup=”textKey()”触发事件<br>onkeyup表示键盘每输入完一个字符之后发生。简单来讲，就是键盘上的按键被放开的时候触发。<br>控制输入字数 最多只能输入1000个字</p>
+<pre><code>function textKey(){
+  var busiPlanOutline = $(&quot;#demandContent&quot;).val();
+  if(busiPlanOutline.length &gt; 1000){
+  busiPlanOutline= busiPlanOutline.substring(0,1000);
+      }
+  $(&quot;#demandContent&quot;).val(busiPlanOutline);
+
 }
 </code></pre></li>
 </ol>
@@ -347,8 +361,16 @@ if(a.length&gt;10){
            }
         });
     });
-</code></pre><p>6   后台插入数据到数据库需要创建对象并保存<br>    public String createR(@Valid DemandPublish newDemandPublish,<br>    RedirectAttributes redirectAttributes){<br>     demandPublishService.saveDemandPublish(newDemandPublish);<br>     redirectAttributes.addFlashAttribute(“message”, “创建成功”);<br>     return “redirect:/login”;<br>    }</p>
-
+</code></pre><p>6   后台插入数据到数据库需要创建对象并保存</p>
+<pre><code>public String createR(@Valid DemandPublish newDemandPublish,
+ RedirectAttributes redirectAttributes){
+   demandPublishService.saveDemandPublish(newDemandPublish);
+   redirectAttributes.addFlashAttribute(&quot;message&quot;, &quot;创建成功&quot;);
+      return &quot;redirect:/login&quot;;
+ }
+</code></pre><p>7   点击排序功能</p>
+<pre><code>&lt;th sortColumn=&quot;enterpriseName&quot;//字段名 onclick=&quot;orderCol(&apos;enterpriseName//字段名&apos;)&quot;&gt;企业名称&lt;/th&gt;
+</code></pre>
             <div class="clearfix"></div>
             <hr class="nogutter">
 		    <!-- JiaThis Button BEGIN -->
